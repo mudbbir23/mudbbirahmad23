@@ -27,6 +27,8 @@ class pricing_table_widget extends \Elementor\Widget_Base {
 		?>
 
     <?php
+
+/** customize content */
     $this->start_controls_section(
       'section_title',
       [
@@ -66,6 +68,7 @@ class pricing_table_widget extends \Elementor\Widget_Base {
 
 
     $this->add_control(
+
       'Select Time Period',
       [
         'type' => \Elementor\Controls_Manager::SELECT,
@@ -80,6 +83,7 @@ class pricing_table_widget extends \Elementor\Widget_Base {
     );
 
     $this->add_control(
+
       'Select Plan',
       [
         'type' => \Elementor\Controls_Manager::SELECT,
@@ -95,6 +99,7 @@ class pricing_table_widget extends \Elementor\Widget_Base {
 
  
     $this->add_control(
+
     'Features',
       [
         'label' => esc_html__( 'Features', 'elementor-addon' ),
@@ -104,6 +109,7 @@ class pricing_table_widget extends \Elementor\Widget_Base {
     );
 
     $this->add_control(
+
     'iconclass',
       [
         'label' => esc_html__( 'Icon Class', 'elementor-addon' ),
@@ -115,19 +121,54 @@ class pricing_table_widget extends \Elementor\Widget_Base {
        ]
     );
 
-    $this->add_control(
+   
+ 
+
+    $this->end_controls_section();
+/**customize content */
+
+/**button customize start */
+
+  $this->start_controls_section(
+
+            'info_section',
+            [
+                'label' => esc_html__( 'Customize button', 'textdomain' ),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+
+ $this->add_control(
+
         'content_section',
 
         [
-            'label' => esc_html__( 'Content', 'elementor-currency-control' ),
+            'label' => esc_html__( 'button Content', 'elementor-currency-control' ),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             'default' => esc_html__( 'Select', 'elementor-addon' ),
          ]
     );
 
-    $this->end_controls_section();
+        $this->add_control(
+        'content_section link',
 
-  
+        [
+            'label' => esc_html__( 'button link', 'elementor-currency-control' ),
+            'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            'default' => esc_html__( 'https://classicaddons.com', 'elementor-addon' ),
+         ]
+    );
+
+
+        $this->end_controls_section();
+
+/**button customize end*/
+
+
+
+
+/** text and bg style*/
 
     $this->start_controls_section(
         'section_title_style',
@@ -157,14 +198,17 @@ class pricing_table_widget extends \Elementor\Widget_Base {
         ]
     );
 
-    $this->add_control(
-        'button bgcolor',
+ 
+$this->add_control(
+        'bgcolor hover',
+
           [
-            'label' => esc_html__( 'button Color', 'elementor-addon' ),
+            'label' => esc_html__( 'Background Color hover', 'elementor-addon' ),
             'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => esc_html__( 'black', 'elementor-addon' ),
+            'default' => esc_html__( '#80BB3F', 'elementor-addon' ),
           ]
     );
+
 
     $this->add_control(
             'bordercolor',
@@ -177,6 +221,59 @@ class pricing_table_widget extends \Elementor\Widget_Base {
 
 
     $this->end_controls_section();
+
+/**text and bg style end*/
+
+/** button start style*/
+
+        $this->start_controls_section(
+
+            'style_section',
+            [
+                'label' => esc_html__( 'button style_section', 'textdomain' ),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+
+            'button hover',
+            [
+                'label' => esc_html__( 'button hover', 'elementor-addon' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => esc_html__( '#fff', 'elementor-addon' ),
+            ]
+         );
+
+
+        $this->add_control(
+
+            'button bgcolor',
+            [
+                'label' => esc_html__( 'button Color', 'elementor-addon' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => esc_html__( 'black', 'elementor-addon' ),
+            ]
+    );
+            $this->add_control(
+        'textcolor button',
+        [
+            'label' => esc_html__( 'Text Color button', 'elementor-addon' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => esc_html__( '#FFFFFF', 'elementor-addon' ),
+        ]
+    );
+             $this->add_control(
+        'textcolor hover',
+        [
+            'label' => esc_html__( 'Text Color hover', 'elementor-addon' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => esc_html__( '#000', 'elementor-addon' ),
+        ]
+    );
+        $this->end_controls_section();
+    /**button sytle end*/
+
 ?>
 
 <style>
@@ -313,7 +410,9 @@ class pricing_table_widget extends \Elementor\Widget_Base {
     border: 2px solid <?php echo $settings['bordercolor'] ?>;
     background-color: <?php echo $settings['bgcolor'] ?>;
 }
-
+.wrapper .featured:hover{
+    background-color: <?php echo $settings['bgcolor hover'] ?>;
+}
 .wrapper .featured .plan-select {
     padding: 30px 20px;
 }
@@ -322,7 +421,14 @@ class pricing_table_widget extends \Elementor\Widget_Base {
     background-color: blue;
 }
 #a1{
-    background-color: <?php echo $settings['button bgcolor'] ?> ;
+    background-color: <?php echo $settings['button bgcolor'] ?>;
+      color: <?php echo $settings['textcolor button']?>;
+
+}
+#a1:hover{
+    background-color: <?php echo $settings['button hover'] ?>;
+      color: <?php echo $settings['textcolor hover']?>;
+
 }
 @media only screen and (max-width: 767px) {
     .wrapper .plan {
@@ -381,11 +487,11 @@ line-height: 70px;
           ?>
         </ul>
 
-        <div class="plan-select" ><a href="" id="a1"> <?php echo $settings['content_section'] ?> </a></div>
+        <div class="plan-select" ><a href="<?php echo $settings['content_section link'] ?>" id="a1"> <?php echo $settings['content_section'] ?> </a></div>
+
 
     </div>
 </div>
-
 
 		<?php
 	}
